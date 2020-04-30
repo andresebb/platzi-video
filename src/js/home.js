@@ -70,4 +70,24 @@ fetch("https://randomuser.me/api/wwew")
 
             .catch(function(){
                 console.log("algo Fallo")
-            })
+            });
+
+
+(async function load(){
+
+
+    async function getData(url){
+        const response = await fetch(url) /*tiene que esperar que no acabe para ejecutar el next codigo*/ 
+        const info = await response.json(); //Aca esperara a que se ejecute response
+        return info;
+        }
+            
+    const actionList = await getData("https://yts.mx/api/v2/list_movies.json=action");
+    const dramaList = await getData("https://yts.mx/api/v2/list_movies.json=drama");
+    const animationList = await getData("https://yts.mx/api/v2/list_movies.json=animation");
+            
+    console.log("actionList", actionList)
+    console.log("dramaList", dramaList)
+    console.log("animationList" + animationList)
+            
+})() 
