@@ -6,9 +6,7 @@ let cambia = "@Andresebb"
 function cambiaNombre(nuevoNombre){
     cambia = nuevoNombre
 }
-/*Las promesas reciven argumentos.
-y esa funcion que va como parametro de la promsa
-recive dos parametros*/
+
 const getUser = new Promise(function(todoBien, todoMal){
     //llamar a un api (simulacion)
     setTimeout(function(){
@@ -34,13 +32,6 @@ const getUserAll = new Promise(function(todoBien, todoMal){
     .catch(function(mensaje){ //.catch cuando la promesa sale mal
         console.log(mensaje)
     })*/
-
-
-
-
-
-    /*Enviar multiples promesas
-    a promise.all se le envian varias promesas*/
 
     Promise.all([ 
         getUser,
