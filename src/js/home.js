@@ -88,6 +88,6 @@ fetch("https://randomuser.me/api/wwew")
             
     console.log("actionList", actionList)
     console.log("dramaList", dramaList)
-    console.log("animationList" + animationList)
+    console.log("animationList", animationList)
             
 })() 
