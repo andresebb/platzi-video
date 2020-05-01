@@ -104,14 +104,17 @@ fetch("https://randomuser.me/api/wwew")
             </div>`
         )
     }
-
+    const $actionContainer = document.getElementById("action");
+    
     actionList.data.movies.forEach((movie) => {
         const HTMLString = videoItemTemplate(movie);
+        const html =  document.implementation.createHTMLDocument();//Crear dentro de la memoria de js un documento html
+        html.body.innerHTML = HTMLString;  //inner es la forma de agregarlo bien bonito con lasa fotos
+        $actionContainer.append(html.body.children[0]) //append es la forma de agrear ese codigo al dom desde js
         console.log(HTMLString);
     })
 
     
-    const $actionContainer = document.getElementById("action");
     const $dramaContainer = document.getElementById("drama");
     const $animationContainer = document.getElementById("animation");
     const $featuringContainer = document.getElementById("featuring");
