@@ -90,4 +90,20 @@ fetch("https://randomuser.me/api/wwew")
     console.log("dramaList", dramaList)
     console.log("animationList", animationList)
             
+    const $actionContainer = document.getElementById("action");
+    const $dramaContainer = document.getElementById("drama");
+    const $animationContainer = document.getElementById("animation");
+    const $featuringContainer = document.getElementById("featuring");
+
+    const $form = document.getElementById("form");
+    const $home = document.getElementById("home");
+
+
+    const $modal = document.getElementById("modal");
+    const $overlay = document.getElementById("overlay");
+    const $hideModal = document.getElementById("hide-modal");
+
+    const $modalTitle = $modal.querySelector("h1");
+    const $modalImage = $modal.querySelector("img");
+    const $modalDescription = $modal.querySelector("p");
 })() 
