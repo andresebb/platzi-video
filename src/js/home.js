@@ -85,11 +85,32 @@ fetch("https://randomuser.me/api/wwew")
     const actionList = await getData("https://yts.mx/api/v2/list_movies.json=action");
     const dramaList = await getData("https://yts.mx/api/v2/list_movies.json=drama");
     const animationList = await getData("https://yts.mx/api/v2/list_movies.json=animation");
-            
+    
     console.log("actionList", actionList)
     console.log("dramaList", dramaList)
     console.log("animationList", animationList)
-            
+    
+    function videoItemTemplate(movie){
+    
+        return (
+            //Esta es la forma de hacerlo con js
+            `<div class="primaryPlaylistItem">
+                <div class="primaryPlaylistItem-image">
+                    <img src="${movie.medium_cover_image}">
+                </div>
+                <h4 class="primaryPlaylistItem-title">
+                    ${movie.title}
+                </h4>
+            </div>`
+        )
+    }
+
+    actionList.data.movies.forEach((movie) => {
+        const HTMLString = videoItemTemplate(movie);
+        console.log(HTMLString);
+    })
+
+    
     const $actionContainer = document.getElementById("action");
     const $dramaContainer = document.getElementById("drama");
     const $animationContainer = document.getElementById("animation");
@@ -107,4 +128,4 @@ fetch("https://randomuser.me/api/wwew")
     const $modalImage = $modal.querySelector("img");
     const $modalDescription = $modal.querySelector("p");
 
-})() 
+})()  
