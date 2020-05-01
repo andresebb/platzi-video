@@ -106,4 +106,5 @@ fetch("https://randomuser.me/api/wwew")
     const $modalTitle = $modal.querySelector("h1");
     const $modalImage = $modal.querySelector("img");
     const $modalDescription = $modal.querySelector("p");
+
 })() 
