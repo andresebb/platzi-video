@@ -81,7 +81,15 @@ fetch("https://randomuser.me/api/wwew")
         const info = await response.json(); //Aca esperara a que se ejecute response
         return info;
         }
-            
+
+    const $form = document.getElementById("form");
+    
+    //Agregando el evento del submit
+    $form.addEventListener("submit", (event) => {  
+        event.preventDefault(); //Evitar que se actulice cada vez que lanzamos el submit
+    } )
+
+
     const actionList = await getData("https://yts.mx/api/v2/list_movies.json=action");
     const dramaList = await getData("https://yts.mx/api/v2/list_movies.json=drama");
     const animationList = await getData("https://yts.mx/api/v2/list_movies.json=animation");
@@ -111,13 +119,18 @@ fetch("https://randomuser.me/api/wwew")
         return html.body.children[0]
     }
 
-    
+    //Agregando el evento el click
+    function addEventClick($element){
+        $element.addEventListener('click', () => alert("clcik"))
+    }
+
     function renderMovieList(list, $container){
         $container.children[0].remove(); //Borrar el gif
         list.forEach((movie) => {
             const HTMLString = videoItemTemplate(movie);
             const movieElement = createTemplate(HTMLString);
             $container.append(movieElement); //append es la forma de agrear ese codigo en texto al dom desde js
+            addEventClick(movieElement);
         })
     }
     
@@ -133,7 +146,6 @@ fetch("https://randomuser.me/api/wwew")
     
     const $featuringContainer = document.getElementById("featuring");
 
-    const $form = document.getElementById("form");
     const $home = document.getElementById("home");
 
 

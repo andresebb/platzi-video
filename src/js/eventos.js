@@ -28,7 +28,8 @@ usando el método event.preventDefault().*/
 
     const $form = document.getElementById("form");
     
-    $form.addEventListener("submit", (event) => {
+    //Agregando el evento del submit
+    $form.addEventListener("submit", (event) => {  
         event.preventDefault(); //Evitar que se actulice cada vez que lanzamos el submit
     } )
 
@@ -62,9 +63,11 @@ usando el método event.preventDefault().*/
         return html.body.children[0]
     }
 
+    //Agregando el evento el click
     function addEventClick($element){
         $element.addEventListener('click', () => alert("clcik"))
     }
+
     function renderMovieList(list, $container){
         $container.children[0].remove(); //Borrar el gif
         list.forEach((movie) => {
