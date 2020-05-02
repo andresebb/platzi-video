@@ -104,19 +104,33 @@ fetch("https://randomuser.me/api/wwew")
             </div>`
         )
     }
-    const $actionContainer = document.getElementById("action");
-    
-    actionList.data.movies.forEach((movie) => {
-        const HTMLString = videoItemTemplate(movie);
+
+    function createTemplate(HTMLString){
         const html =  document.implementation.createHTMLDocument();//Crear dentro de la memoria de js un documento html
         html.body.innerHTML = HTMLString;  //inner es la forma de agregarlo bien bonito con lasa fotos
-        $actionContainer.append(html.body.children[0]) //append es la forma de agrear ese codigo al dom desde js
-        console.log(HTMLString);
-    })
+        return html.body.children[0]
+    }
 
     
+    function renderMovieList(list, $container){
+        $container.children[0].remove(); //Borrar el gif
+        list.forEach((movie) => {
+            const HTMLString = videoItemTemplate(movie);
+            const movieElement = createTemplate(HTMLString);
+            $container.append(movieElement); //append es la forma de agrear ese codigo en texto al dom desde js
+        })
+    }
+    
+    const $actionContainer = document.getElementById("action");
+    renderMovieList(actionList.data.movies, $actionContainer)
+    
     const $dramaContainer = document.getElementById("drama");
+    renderMovieList(dramaList.data.movies, $dramaContainer)
+    
     const $animationContainer = document.getElementById("animation");
+    renderMovieList(animationList.data.movies, $animationContainer)
+
+    
     const $featuringContainer = document.getElementById("featuring");
 
     const $form = document.getElementById("form");
@@ -129,6 +143,6 @@ fetch("https://randomuser.me/api/wwew")
 
     const $modalTitle = $modal.querySelector("h1");
     const $modalImage = $modal.querySelector("img");
-    const $modalDescription = $modal.querySelector("p");
+    const $modalDescription = $modal.querySelector("description");
 
-})()  
+})()
