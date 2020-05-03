@@ -221,7 +221,7 @@
     
     .featuring {
         background: linear-gradient(to right, #ff0000, #ff458b);
-        display: flex;
+        display: none;
         height: 100%;
         align-items: center;
         padding-left: 100px;

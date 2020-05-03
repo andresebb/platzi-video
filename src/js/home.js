@@ -88,12 +88,11 @@ const $home = document.getElementById("home");
 const $featuringContainer = document.getElementById('featuring');
 $featuringClass = document.querySelector(".featuring");
 
-function setAttributes($element, attributes) {
+function setAttributes($element, attributes) {  //Agregando elementos a html
 for (const attribute in attributes) {
     $element.setAttribute(attribute, attributes[attribute]);
     }
 }
-
 
 function showFeaturing(){
     $featuringClass.style.display="block";
@@ -104,11 +103,11 @@ $form.addEventListener("submit", (event) => {
     event.preventDefault(); //Evitar que se actulice cada vez que lanzamos el submit
     showFeaturing();
     $home.classList.add("search-active");//agregamos la clase search active a home cuando haga el submit
-    const $loader = document.createElement('img');
+    const $loader = document.createElement('img');//crear doc html
     setAttributes($loader, {
         src: 'src/images/loader.gif',
-        height: 100,
-        width: 100,
+        height: 50,
+        width: 50,
     })
     $featuringContainer.append($loader);
     
