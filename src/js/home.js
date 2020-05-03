@@ -124,15 +124,20 @@ fetch("https://randomuser.me/api/wwew")
         $featuringContainer.append($loader);
 
         //formData nos permite llenar ese formulario
-        const data = new FormData($form);// se le pasa un elemento html de form
-
+        const data = new FormData($form);// a formData se le pasa un elemento html de form
+        const {  //Estamos desestructurando al resultado de getData abajo
+            data: { 
+                movies
+            }
+        } = await getData(`${BASE_API}list_movies.json?limit=1&query_term=${data.get("name")}`);
         //dice traeme las pelicula de esta url que tenga el nombre que se escribio en el buscador
-        const peli = await getData(`${BASE_API}list_movies.json?limit=1&query_term=${data.get("name")}`);
+        
+
         
         // data.get("name")En html dentro de los elementos form debemos tener un name, 
         //esto se hace para que nos traiga lo que tenemos en el buscador
         
-        const HTMLString = featuringTemplate(peli.data.movies[0]) //invoca esta funcion y peli tiene un data 
+        const HTMLString = featuringTemplate(movies[0]) //invoca esta funcion y peli tiene un data 
         //y dentro de data hay movies traeme el elemento 0 
 
         $featuringContainer.innerHTML = HTMLString; //convertirlo en elemento html
