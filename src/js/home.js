@@ -93,14 +93,27 @@ fetch("https://randomuser.me/api/wwew")
         }
     }
 
-    function showFeaturing(){
-        $featuringClass.style.display="block";
+    const BASE_API = "https://yts.mx/api/v2/";
+
+    function featuringTemplate(peli){ //Template para que muestre la pelicula
+        return(
+            `
+            <div class="featuring">
+                <div class="featuring-image">
+                    <img src="${peli.medium_cover_image}" width="70" height="100" alt="">
+                </div>
+                <div class="featuring-content">
+                    <p class="featuring-title">Pelicula encontrada</p>
+                    <p class="featuring-album">${peli.title}</p>
+                </div>
+            </div>
+            `
+        )
     }
 
     //Agregando el evento del submit
-    $form.addEventListener("submit", (event) => {  
-        event.preventDefault(); //Evitar que se actulice cada vez que lanzamos el submit
-        showFeaturing();
+    $form.addEventListener("submit", async (event) => {  
+    event.preventDefault(); //Evitar que se actulice cada vez que lanzamos el submit
         $home.classList.add("search-active");//agregamos la clase search active a home cuando haga el submit
         const $loader = document.createElement('img');//crear doc html
         setAttributes($loader, {
@@ -109,6 +122,20 @@ fetch("https://randomuser.me/api/wwew")
             width: 50,
         })
         $featuringContainer.append($loader);
+
+        //formData nos permite llenar ese formulario
+        const data = new FormData($form);// se le pasa un elemento html de form
+
+        //dice traeme las pelicula de esta url que tenga el nombre que se escribio en el buscador
+        const peli = await getData(`${BASE_API}list_movies.json?limit=1&query_term=${data.get("name")}`);
+        
+        // data.get("name")En html dentro de los elementos form debemos tener un name, 
+        //esto se hace para que nos traiga lo que tenemos en el buscador
+        
+        const HTMLString = featuringTemplate(peli.data.movies[0]) //invoca esta funcion y peli tiene un data 
+        //y dentro de data hay movies traeme el elemento 0 
+
+        $featuringContainer.innerHTML = HTMLString; //convertirlo en elemento html
         
     })
 
